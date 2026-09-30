@@ -2,15 +2,11 @@
 
 WORKDIR /app
 
-# Install all required Linux C++ system libraries for OpenCV
+# Install modern Debian C++ OpenGL libraries for OpenCV
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgl1-mesa-glx \
+    libgl1 \
+    libglx-mesa0 \
     libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender1 \
-    libxcb1 \
-    libx11-xcb1 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
