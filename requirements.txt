@@ -1,0 +1,22 @@
+# Core dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+websockets==12.0
+python-multipart==0.0.6
+
+# AI/Computer Vision
+ultralytics==8.0.206
+opencv-python==4.8.1.78
+opencv-python-headless==4.8.1.78
+numpy==1.24.3
+pillow==10.1.0
+
+# OCR for ANPR
+easyocr==1.7.1
+
+# Utilities
+pydantic==2.5.0
+python-dotenv==1.0.0
+
+# Fallback image processing
+Pillow==10.1.0

@@ -1,0 +1,74 @@
+{
+  "junctions": [
+    {
+      "id": "J1",
+      "name": "Andheri West Junction",
+      "lat": 19.1156,
+      "lng": 72.8428,
+      "status": "moderate",
+      "total_count": 55
+    },
+    {
+      "id": "J2",
+      "name": "Bandra Kurla Complex",
+      "lat": 19.0634,
+      "lng": 72.8695,
+      "status": "congested",
+      "total_count": 85
+    },
+    {
+      "id": "J3",
+      "name": "Dadar TT Circle",
+      "lat": 19.0198,
+      "lng": 72.8456,
+      "status": "free",
+      "total_count": 25
+    },
+    {
+      "id": "J4",
+      "name": "Nariman Point",
+      "lat": 18.9227,
+      "lng": 72.8258,
+      "status": "moderate",
+      "total_count": 48
+    },
+    {
+      "id": "J5",
+      "name": "Sion Circle",
+      "lat": 19.0441,
+      "lng": 72.8658,
+      "status": "live",
+      "total_count": 0,
+      "is_live": true
+    },
+    {
+      "id": "J6",
+      "name": "Chembur Signal",
+      "lat": 19.0728,
+      "lng": 72.8987,
+      "status": "free",
+      "total_count": 18
+    },
+    {
+      "id": "J7",
+      "name": "Kurla West",
+      "lat": 19.0589,
+      "lng": 72.8834,
+      "status": "congested",
+      "total_count": 92
+    },
+    {
+      "id": "J8",
+      "name": "Ghatkopar Junction",
+      "lat": 19.0834,
+      "lng": 72.9078,
+      "status": "moderate",
+      "total_count": 52
+    }
+  ],
+  "map_center": {
+    "lat": 19.0760,
+    "lng": 72.8777
+  },
+  "zoom_level": 12
+}

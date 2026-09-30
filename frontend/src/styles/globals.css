@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* SignalVision operations-center palette */
+  --bg-primary: #0a0f1e;
+  --bg-secondary: #0f172a;
+  --bg-card: #1e293b;
+  --border: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-cyan: #00e5ff;
+  --accent-teal: #14b8a6;
+  --status-green: #10b981;
+  --status-amber: #f59e0b;
+  --status-red: #ef4444;
+  --status-gray: #64748b;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Monospace for numbers, timers, IDs */
+.font-mono-num {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Leaflet dark theme */
+.leaflet-container {
+  background: var(--bg-secondary);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.leaflet-popup-content {
+  margin: 12px;
+}
+
+.leaflet-bar a {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+
+.leaflet-bar a:hover {
+  background: var(--bg-secondary) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(10, 15, 30, 0.8) !important;
+  color: var(--text-muted) !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--text-secondary) !important;
+}
+
+/* Subtle pulsing dot for live indicators */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Active sidebar item left border */
+.nav-active-border {
+  box-shadow: inset 3px 0 0 var(--accent-cyan);
+}

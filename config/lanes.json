@@ -1,0 +1,46 @@
+{
+  "lanes": {
+    "Lane_A": {
+      "name": "Lane A",
+      "color": "#00ff00",
+      "roi": [[100, 300], [400, 300], [400, 500], [100, 500]],
+      "position": "north"
+    },
+    "Lane_B": {
+      "name": "Lane B",
+      "color": "#00ffff",
+      "roi": [[400, 100], [600, 100], [600, 300], [400, 300]],
+      "position": "east"
+    },
+    "Lane_C": {
+      "name": "Lane C",
+      "color": "#ff00ff",
+      "roi": [[400, 500], [700, 500], [700, 700], [400, 700]],
+      "position": "south"
+    },
+    "Lane_D": {
+      "name": "Lane D",
+      "color": "#ffff00",
+      "roi": [[100, 300], [300, 300], [300, 500], [100, 500]],
+      "position": "west"
+    }
+  },
+  "timer_config": {
+    "total_cycle_time": 120,
+    "min_green_time": 10,
+    "max_green_time": 60,
+    "amber_time": 3
+  },
+  "congestion_thresholds": {
+    "high": 30,
+    "medium": 15,
+    "low": 0
+  },
+    "video_config": {
+    "fps": 15,
+    "width": 800,
+    "height": 800,
+    "mode": "simulation"
+   }
+}
+

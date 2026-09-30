@@ -1,0 +1,143 @@
+AI-Powered Adaptive Traffic Signal Controller
+System Architecture Diagram
+================================================
+
+CCTV FEED / SIMULATION
+┌─────────────────────────────────────────────┐
+│  RTSP Stream / Local Video / Simulation    │
+│  (Real or synthetic traffic video)          │
+└──────────────────┬──────────────────────────┘
+                   │
+                   ▼
+FRAME PROCESSING (OpenCV)
+┌─────────────────────────────────────────────┐
+│  • Frame extraction at 15 FPS               │
+│  • Lane ROI polygon masks                   │
+│  • Frame preprocessing                      │
+└──────────────────┬──────────────────────────┘
+                   │
+                   ▼
+VEHICLE DETECTION (YOLOv8)
+┌─────────────────────────────────────────────┐
+│  • Detect: car, motorcycle, bus, truck      │
+│  • Filter by confidence threshold           │
+│  • Extract bounding boxes & centroids      │
+│  • Assign vehicles to lanes using ROI      │
+└──────────────────┬──────────────────────────┘
+                   │
+                   ▼
+LANE DENSITY ANALYSIS
+┌─────────────────────────────────────────────┐
+│  • Count vehicles per lane                  │
+│  • Calculate total vehicles                 │
+│  • Determine congestion levels:             │
+│    - HIGH (≥30 vehicles)                    │
+│    - MEDIUM (15-29 vehicles)                │
+│    - LOW (<15 vehicles)                     │
+└──────────────────┬──────────────────────────┘
+                   │
+                   ▼
+SIGNAL TIMER ENGINE (Adaptive)
+┌─────────────────────────────────────────────┐
+│  • Calculate proportional green time:       │
+│    green_time = (count/total) * cycle_time   │
+│  • Apply constraints:                       │
+│    - Minimum: 10 seconds per lane           │
+│    - Maximum: 60 seconds per lane           │
+│  • Adjust for congestion levels             │
+└──────────────────┬──────────────────────────┘
+                   │
+                   ▼
+SIGNAL STATE MACHINE
+┌─────────────────────────────────────────────┐
+│  • Track current active lane                │
+│  • State: GREEN → AMBER (3s) → RED          │
+│  • Countdown timer (ticks every second)      │
+│  • Cycle: A → B → C → D → A                 │
+│  • Recalculate on new YOLO counts           │
+└──────────────────┬──────────────────────────┘
+                   │
+                   ▼
+API LAYER (FastAPI)
+┌─────────────────────────────────────────────┐
+│  REST Endpoints:                            │
+│  • GET /api/health                          │
+│  • GET /api/lanes                           │
+│  • GET /api/signal-status                   │
+│  • GET /api/congestion-map                  │
+│  • POST /api/config                         │
+│                                             │
+│  WebSocket Endpoints:                       │
+│  • WS /ws/live-data (1 Hz)                  │
+│  • WS /ws/video-stream (15 FPS)             │
+└──────────────────┬──────────────────────────┘
+                   │
+                   ▼
+REACT DASHBOARD
+┌─────────────────────────────────────────────┐
+│  ┌──────────────────────────────────────┐  │
+│  │  HEADER                              │  │
+│  │  Title + Live Status + SIH Badge     │  │
+│  └──────────────────────────────────────┘  │
+│                                             │
+│  ┌──────────────────┬──────────────────┐  │
+│  │  Live Video Feed │  Signal Timer    │  │
+│  │  (WebSocket)     │  Panel            │  │
+│  │  • YOLOv8 bbox   │  • 4 Lane Cards   │  │
+│  │  • Lane ROI      │  • Countdowns     │  │
+│  │  • Count badges  │  • Congestion     │  │
+│  └──────────────────┴──────────────────┘  │
+│                                             │
+│  Green Time Comparison Chart                │
+│  (Fixed Timer vs Adaptive AI)               │
+│                                             │
+│  City Congestion Map                         │
+│  (Leaflet.js + OpenStreetMap)               │
+│  • 8 Junction markers                       │
+│  • Color-coded by congestion                 │
+│  • Click for details                        │
+│                                             │
+│  Additional Tabs:                            │
+│  • ANPR (License Plate Recognition)         │
+│  • Trajectory Tracking                      │
+└─────────────────────────────────────────────┘
+
+DATA FLOW SUMMARY
+==================
+
+1. Video Input → Frame Processing
+2. Frame → YOLOv8 Detection → Vehicle Bounding Boxes
+3. Bounding Boxes → Lane Assignment (ROI) → Per-Lane Counts
+4. Lane Counts → Timer Engine → Green Time Allocation
+5. Green Times → State Machine → Signal States
+6. Signal States → API → WebSocket → React Dashboard
+7. Dashboard Updates Every Second (Live Data)
+8. Video Stream Updates Every 67ms (15 FPS)
+
+KEY TECHNOLOGIES
+================
+
+Backend:
+• Python 3.8+
+• FastAPI (REST + WebSocket)
+• YOLOv8 (Ultralytics)
+• OpenCV
+• EasyOCR (optional)
+
+Frontend:
+• React 18
+• Vite
+• TailwindCSS
+• Leaflet.js
+• Recharts
+
+INNOVATION
+===========
+
+✓ AI-driven adaptive timing (vs fixed timers)
+✓ Real-time vehicle detection (YOLOv8)
+✓ Lane-wise intelligence (4 independent lanes)
+✓ Dynamic green times based on density
+✓ Zero new infrastructure (uses existing CCTV)
+✓ Target: 20-25% reduction in waiting time
+✓ Works offline with simulation mode
