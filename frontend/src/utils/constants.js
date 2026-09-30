@@ -1,5 +1,22 @@
 // Constants for the SignalVision traffic signal controller
 
+// ===== PRODUCTION VS LOCALHOST URL SETUP =====
+const IS_PROD = import.meta.env.PROD;
+
+// Live Railway Backend Domain
+const PROD_BACKEND_URL = 'https://traffic-ai-prototype-production.up.railway.app';
+
+export const API_BASE_URL = IS_PROD
+  ? PROD_BACKEND_URL
+  : 'http://localhost:8000';
+
+export const WS_LIVE_DATA_URL = IS_PROD
+  ? PROD_BACKEND_URL.replace('https://', 'wss://').replace('http://', 'ws://') + '/ws/live-data'
+  : 'ws://localhost:8000/ws/live-data';
+
+export const VIDEO_FEED_URL = `${API_BASE_URL}/api/video-feed`;
+
+// ===== COLOR PALETTE & THRESHOLDS =====
 // Lane colors per operations-center spec: A green, B cyan, C amber, D red
 export const LANE_COLORS = {
   'Lane_A': '#10b981',
@@ -25,10 +42,6 @@ export const CONGESTION_THRESHOLDS = {
   MEDIUM: 15,
   LOW: 0,
 };
-
-export const API_BASE_URL = 'http://localhost:8000';
-export const WS_LIVE_DATA_URL = 'ws://localhost:8000/ws/live-data';
-export const VIDEO_FEED_URL = 'http://localhost:8000/api/video-feed';
 
 export const VEHICLE_CLASSES = {
   2: 'car',
